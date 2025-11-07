@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:all": "concurrently \"pnpm dev\" \"cd ../backend && php artisan serve\" -n \"frontend,backend\" -c \"cyan,yellow\"",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },
@@ -15,6 +16,7 @@
     "@types/node": "^24.6.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "concurrently": "^9.2.1",
     "typescript": "~5.9.3",
     "vite": "npm:rolldown-vite@7.1.14",
     "vue-tsc": "^3.1.0"
