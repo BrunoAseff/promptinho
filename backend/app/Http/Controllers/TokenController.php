@@ -10,9 +10,9 @@ class TokenController extends Controller
 {
     private EncoderProvider $provider;
 
-    public function __construct()
+    public function __construct(EncoderProvider $provider)
     {
-        $this->provider = new EncoderProvider();
+        $this->provider = $provider;
     }
 
     public function count(Request $request): JsonResponse
