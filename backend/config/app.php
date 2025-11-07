@@ -155,6 +155,7 @@ return [
     */
 
     "providers" => ServiceProvider::defaultProviders()
+        ->except([Illuminate\Session\SessionServiceProvider::class])
         ->merge([
             /*
              * Package Service Providers...
