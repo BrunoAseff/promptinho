@@ -32,9 +32,18 @@ class TokenController extends Controller
         try {
             $encoder = $this->provider->getForModel($model);
             $tokens = $encoder->encode($text);
+            $decoded_text = [];
+
+            foreach ($tokens as $token) {
+                $decoded_token = $encoder->decode([$token]);
+
+                array_push($decoded_text, $decoded_token);
+            }
 
             return response()->json([
-                "tokens" => \count($tokens),
+                "count" => \count($tokens),
+                "tokens" => $tokens,
+                "decoded_text" => $decoded_text,
             ]);
         } catch (\Exception $e) {
             return response()->json(
