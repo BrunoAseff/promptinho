@@ -20,11 +20,7 @@
             @remove="removePrompt(prompt.id)"
           />
 
-          <button
-            class="add-prompt"
-            @click="addPrompt"
-            title="Adicionar variação de prompt"
-          >
+          <button class="add-prompt" @click="addPrompt" title="Adicionar variação de prompt">
             <span class="add-icon">+</span>
           </button>
         </div>
@@ -41,16 +37,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import PromptInput from './components/PromptInput.vue';
-import Sidebar from './components/Sidebar.vue';
-import type { Prompt, Algorithm } from './types';
-import { countTokens } from './api';
+import { ref, computed } from "vue";
+import PromptInput from "./components/PromptInput.vue";
+import Sidebar from "./components/Sidebar.vue";
+import type { Prompt, Algorithm } from "./types";
+import { countTokens } from "./api";
 
 const prompts = ref<Prompt[]>([
   {
     id: crypto.randomUUID(),
-    text: '',
+    text: "",
     tokenData: null,
     isLoading: false,
     error: null,
@@ -58,12 +54,10 @@ const prompts = ref<Prompt[]>([
 ]);
 
 const focusedPromptId = ref<string>(prompts.value[0].id);
-const selectedAlgorithm = ref<Algorithm>('gpt-4o');
+const selectedAlgorithm = ref<Algorithm>("gpt-4o");
 
 const focusedPrompt = computed(
-  () =>
-    prompts.value.find((prompt) => prompt.id === focusedPromptId.value) ||
-    prompts.value[0]
+  () => prompts.value.find((prompt) => prompt.id === focusedPromptId.value) || prompts.value[0],
 );
 
 const addPrompt = () => {
@@ -115,7 +109,7 @@ const updateTokens = async (id: string, text: string) => {
   try {
     prompt.tokenData = await countTokens(text, selectedAlgorithm.value);
   } catch (error) {
-    prompt.error = error instanceof Error ? error.message : 'Unknown error';
+    prompt.error = error instanceof Error ? error.message : "Unknown error";
     prompt.tokenData = null;
   } finally {
     prompt.isLoading = false;
@@ -134,7 +128,7 @@ const onAlgorithmChange = (algorithm: Algorithm) => {
 const clearPrompt = () => {
   const prompt = focusedPrompt.value;
   if (prompt) {
-    prompt.text = '';
+    prompt.text = "";
     prompt.tokenData = null;
     prompt.error = null;
   }
@@ -156,8 +150,7 @@ const copyPrompt = async () => {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--color-bg-secondary);
