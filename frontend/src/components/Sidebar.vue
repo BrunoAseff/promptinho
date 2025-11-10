@@ -158,7 +158,7 @@ const activeTab = ref<'visualization' | 'metrics'>('visualization');
 
 .section-title {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -297,7 +297,7 @@ const activeTab = ref<'visualization' | 'metrics'>('visualization');
 
 .metric-value {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
   font-variant-numeric: tabular-nums;
 }

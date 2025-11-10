@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <header class="header">
-      <h1 class="title">Promptinho</h1>
+      <h1 class="title">promptinho</h1>
       <p class="subtitle">Contador e Analisador de Tokens</p>
     </header>
 
@@ -156,8 +156,10 @@ const copyPrompt = async () => {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
+  font-family: 'Roboto Mono', monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--color-bg-secondary);
@@ -187,7 +189,7 @@ body {
 
 .title {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
 }
