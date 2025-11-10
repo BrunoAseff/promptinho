@@ -2,7 +2,14 @@
   <div class="prompt-input-wrapper" :class="{ 'is-focused': isFocused }">
     <div class="prompt-header">
       <span class="prompt-label">Prompt {{ index + 1 }}</span>
-      <button v-if="canRemove" class="remove-btn" @click="emit('remove')" title="Remover este prompt">×</button>
+      <button
+        v-if="canRemove"
+        class="remove-btn"
+        @click="emit('remove')"
+        title="Remover este prompt"
+      >
+        ×
+      </button>
     </div>
 
     <textarea
@@ -32,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Prompt } from "../types";
+import type { Prompt } from '../types';
 
 interface Props {
   prompt: Prompt;
@@ -45,17 +52,17 @@ const props = defineProps<Props>();
 
 const emit = defineEmits<{
   focus: [];
-  "update:text": [text: string];
+  'update:text': [text: string];
   remove: [];
 }>();
 
 const handleInput = (event: Event) => {
   const target = event.target as HTMLTextAreaElement;
-  emit("update:text", target.value);
+  emit('update:text', target.value);
 };
 
 const handleFocus = () => {
-  emit("focus");
+  emit('focus');
 };
 </script>
 
@@ -113,7 +120,8 @@ const handleFocus = () => {
   padding: 1rem;
   border: none;
   outline: none;
-  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas,
+    monospace;
   font-size: 0.9375rem;
   line-height: 1.6;
   resize: vertical;
@@ -164,7 +172,7 @@ const handleFocus = () => {
 
 .count-value {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
   font-variant-numeric: tabular-nums;
 }
