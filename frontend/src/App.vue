@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <header class="header">
-      <h1 class="title">Promptinho</h1>
+      <h1 class="title">promptinho</h1>
       <p class="subtitle">Contador e Analisador de Tokens</p>
     </header>
 
@@ -41,16 +41,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import PromptInput from "./components/PromptInput.vue";
-import Sidebar from "./components/Sidebar.vue";
-import type { Prompt, Algorithm } from "./types";
-import { countTokens } from "./api";
+import { ref, computed } from 'vue';
+import PromptInput from './components/PromptInput.vue';
+import Sidebar from './components/Sidebar.vue';
+import type { Prompt, Algorithm } from './types';
+import { countTokens } from './api';
 
 const prompts = ref<Prompt[]>([
   {
     id: crypto.randomUUID(),
-    text: "",
+    text: '',
     tokenData: null,
     isLoading: false,
     error: null,
@@ -58,12 +58,12 @@ const prompts = ref<Prompt[]>([
 ]);
 
 const focusedPromptId = ref<string>(prompts.value[0].id);
-const selectedAlgorithm = ref<Algorithm>("gpt-4o");
+const selectedAlgorithm = ref<Algorithm>('gpt-4o');
 
 const focusedPrompt = computed(
   () =>
     prompts.value.find((prompt) => prompt.id === focusedPromptId.value) ||
-    prompts.value[0],
+    prompts.value[0]
 );
 
 const addPrompt = () => {
@@ -115,7 +115,7 @@ const updateTokens = async (id: string, text: string) => {
   try {
     prompt.tokenData = await countTokens(text, selectedAlgorithm.value);
   } catch (error) {
-    prompt.error = error instanceof Error ? error.message : "Unknown error";
+    prompt.error = error instanceof Error ? error.message : 'Unknown error';
     prompt.tokenData = null;
   } finally {
     prompt.isLoading = false;
@@ -134,7 +134,7 @@ const onAlgorithmChange = (algorithm: Algorithm) => {
 const clearPrompt = () => {
   const prompt = focusedPrompt.value;
   if (prompt) {
-    prompt.text = "";
+    prompt.text = '';
     prompt.tokenData = null;
     prompt.error = null;
   }
@@ -156,7 +156,7 @@ const copyPrompt = async () => {
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -189,7 +189,7 @@ body {
 
 .title {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
 }
