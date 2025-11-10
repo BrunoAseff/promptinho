@@ -20,7 +20,11 @@
             @remove="removePrompt(prompt.id)"
           />
 
-          <button class="add-prompt" @click="addPrompt" title="Adicionar variação de prompt">
+          <button
+            class="add-prompt"
+            @click="addPrompt"
+            title="Adicionar variação de prompt"
+          >
             <span class="add-icon">+</span>
           </button>
         </div>
@@ -57,7 +61,9 @@ const focusedPromptId = ref<string>(prompts.value[0].id);
 const selectedAlgorithm = ref<Algorithm>("gpt-4o");
 
 const focusedPrompt = computed(
-  () => prompts.value.find((prompt) => prompt.id === focusedPromptId.value) || prompts.value[0],
+  () =>
+    prompts.value.find((prompt) => prompt.id === focusedPromptId.value) ||
+    prompts.value[0],
 );
 
 const addPrompt = () => {
@@ -150,7 +156,10 @@ const copyPrompt = async () => {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--color-bg-secondary);
