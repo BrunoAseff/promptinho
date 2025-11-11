@@ -69,7 +69,7 @@ const handleFocus = () => {
 <style scoped>
 .prompt-input-wrapper {
   position: relative;
-  border: 2px solid var(--color-border-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 8px;
   background: var(--color-bg-primary);
   transition: all 0.2s ease;
