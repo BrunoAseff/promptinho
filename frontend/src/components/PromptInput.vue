@@ -3,12 +3,13 @@
     <div class="prompt-header">
       <span class="prompt-label">PROMPT {{ index + 1 }}</span>
       <button
-        v-if="canRemove"
         class="remove-btn"
+        :class="{ 'is-hidden': !canRemove }"
+        :disabled="!canRemove"
         @click="emit('remove')"
         title="Remover este prompt"
       >
-        ×
+        <PhX :size="32" weight="thin" />
       </button>
     </div>
 
@@ -34,12 +35,18 @@
         <span class="count-label">TOKENS:</span>
         <span class="count-value">{{ prompt.tokenData.count }}</span>
       </div>
+      <div class="copy-btn" @click="copyPrompt">
+        <PhCopy v-if="!isCopying" :size="22" weight="thin" />
+        <PhCheck v-else :size="22" weight="thin" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Prompt } from '../types';
+import { PhCopy, PhCheck, PhX } from '@phosphor-icons/vue';
+import { ref } from 'vue';
 
 interface Props {
   prompt: Prompt;
@@ -56,6 +63,8 @@ const emit = defineEmits<{
   remove: [];
 }>();
 
+const isCopying = ref(false);
+
 const handleInput = (event: Event) => {
   const target = event.target as HTMLTextAreaElement;
   emit('update:text', target.value);
@@ -63,6 +72,14 @@ const handleInput = (event: Event) => {
 
 const handleFocus = () => {
   emit('focus');
+};
+
+const copyPrompt = () => {
+  navigator.clipboard.writeText(props.prompt.text);
+  isCopying.value = true;
+  setTimeout(() => {
+    isCopying.value = false;
+  }, 2000);
 };
 </script>
 
@@ -108,9 +125,14 @@ const handleFocus = () => {
   transition: all 0.15s ease;
 }
 
-.remove-btn:hover {
+.remove-btn:hover:not(:disabled) {
   background: var(--color-error-hover-bg);
   color: var(--color-error-text);
+}
+
+.remove-btn.is-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .prompt-textarea {
@@ -173,5 +195,14 @@ const handleFocus = () => {
   font-weight: 500;
   color: var(--color-text-primary);
   font-variant-numeric: tabular-nums;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0 1rem;
 }
 </style>
