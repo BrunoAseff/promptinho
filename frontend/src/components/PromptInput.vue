@@ -1,7 +1,7 @@
 <template>
   <div class="prompt-input-wrapper" :class="{ 'is-focused': isFocused }">
     <div class="prompt-header">
-      <span class="prompt-label">Prompt {{ index + 1 }}</span>
+      <span class="prompt-label">PROMPT {{ index + 1 }}</span>
       <button
         v-if="canRemove"
         class="remove-btn"
@@ -23,7 +23,7 @@
 
     <div class="status-bar">
       <div v-if="prompt.isLoading" class="status">
-        <span class="status-text">Analisando...</span>
+        <span class="status-text">ANALISANDO...</span>
       </div>
 
       <div v-else-if="prompt.error" class="status error">
@@ -31,7 +31,7 @@
       </div>
 
       <div v-else-if="prompt.tokenData" class="token-count">
-        <span class="count-label">Tokens:</span>
+        <span class="count-label">TOKENS:</span>
         <span class="count-value">{{ prompt.tokenData.count }}</span>
       </div>
     </div>
@@ -84,13 +84,12 @@ const handleFocus = () => {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--color-border-primary);
 }
 
 .prompt-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--color-text-tertiary);
 }
 
 .remove-btn {
@@ -135,8 +134,6 @@ const handleFocus = () => {
 
 .status-bar {
   height: 36px;
-  border-top: 1px solid var(--color-border-primary);
-  background: var(--color-bg-tertiary);
   display: flex;
   align-items: center;
   border-bottom-left-radius: 8px;
@@ -149,16 +146,16 @@ const handleFocus = () => {
 }
 
 .status.error {
-  background: var(--color-error-bg);
   color: var(--color-error-text);
 }
 
 .status-text {
   font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 300;
 }
 
 .token-count {
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -167,7 +164,8 @@ const handleFocus = () => {
 
 .count-label {
   font-size: 0.875rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+  font-weight: 300;
 }
 
 .count-value {
