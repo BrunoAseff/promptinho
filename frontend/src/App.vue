@@ -1,8 +1,9 @@
 <template>
   <div class="app">
     <header class="header">
-      <h1 class="title">promptinho</h1>
-      <p class="subtitle">Contador e Analisador de Tokens</p>
+      <PhArrowsIn :size="32" weight="thin" />
+
+      <h1 class="title">PROMPTINHO</h1>
     </header>
 
     <div class="main-container">
@@ -25,7 +26,7 @@
             @click="addPrompt"
             title="Adicionar variação de prompt"
           >
-            <span class="add-icon">+</span>
+            <span class="add-icon"><PhPlus :size="32" weight="thin" /></span>
           </button>
         </div>
       </main>
@@ -46,6 +47,7 @@ import PromptInput from './components/PromptInput.vue';
 import Sidebar from './components/Sidebar.vue';
 import type { Prompt, Algorithm } from './types';
 import { countTokens } from './api';
+import { PhArrowsIn, PhPlus } from '@phosphor-icons/vue';
 
 const prompts = ref<Prompt[]>([
   {
@@ -181,6 +183,9 @@ body {
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 1.5rem 2rem;
   border-bottom: 1px solid var(--color-border-primary);
   background: var(--color-bg-primary);
@@ -189,7 +194,7 @@ body {
 
 .title {
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 300;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
 }
@@ -226,7 +231,7 @@ body {
 .add-prompt {
   width: 100%;
   min-height: 245px;
-  border: 2px dashed var(--color-border-secondary);
+  border: 1px dashed var(--color-border-secondary);
   border-radius: 8px;
   background: transparent;
   cursor: pointer;

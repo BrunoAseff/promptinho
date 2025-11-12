@@ -1,7 +1,8 @@
 <template>
   <div class="token-visualization">
     <div v-if="!tokenData" class="empty-state">
-      Digite um texto para ver a visualização dos tokens
+      <PhEmpty :size="32" weight="thin" />
+      Digite um texto para ver os tokens
     </div>
 
     <div v-else class="tokens-container">
@@ -22,6 +23,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { TokenData } from '../types';
+import { PhEmpty } from '@phosphor-icons/vue';
 
 interface Props {
   tokenData: TokenData | null;
@@ -61,6 +63,8 @@ const tokens = computed(() => {
 
 .empty-state {
   display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100px;
@@ -68,6 +72,8 @@ const tokens = computed(() => {
   font-size: 0.875rem;
   text-align: center;
   padding: 2rem;
+  font-weight: 300;
+  color: var(--color-text-primary);
 }
 
 .tokens-container {
